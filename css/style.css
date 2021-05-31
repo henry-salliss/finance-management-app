@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  flex-direction: column;
+}
+
+input {
+  width: 50%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+#title {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  padding-left: 5%;
+  text-decoration: underline;
+}
+
+.incomings {
+  display: flex;
+  padding: 2%;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.input-income {
+  display: flex;
+}
+
+.total-income {
+  display: flex;
+}
+
+.output {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 25%;
+  font-size: 2em;
+  padding: 5%;
+}
+
+.icon {
+  margin-top: 3%;
+}
