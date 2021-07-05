@@ -22,26 +22,61 @@
       rel="stylesheet"
     />
     <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet" />
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
   </head>
   <body>
     <div class="container">
-      <h1 id="title">Expense app</h1>
-      <section class="incomings">
+      <h1 id="title">Budget app</h1>
+      <section class="incomings money-container">
         <div class="input-income">
           <h2>Income</h2>
-          <label for="wage">Wage</label>
+          <label for="wage">Wage</label> 
           <input type="text" name="wage" id="wage" placeholder="wage..." />
-          <label for="bonus">Bonus</label>
-          <input type="text" name="bonus" id="bonus" placeholder="bonus..." />
-          <label for="other">Other</label>
-          <input type="text" name="other" id="other" placeholder="other..." />
+          <button class="btn btnDelete"><i class="fas fa-trash-alt"></i></button>
+          <label for="expense 1">
+            <input style="border: 0px;" type="text" placeholder="income...">
+          </label>
+          <input type="text" name="income-1" id="income-1" placeholder="price..." />
+          <button class="btn btnDelete"><i class="fas fa-trash-alt"></i></button>
+
+          <button class="btn btnInc">add more +</button>
         </div>
+
         <div class="total-income">
           <h2>Total income</h2>
-          <div class="output">
-            <p>$100</p>
+          <div class="income-output output">
+            <p id="totalInc">$100</p>
             <i class="fas fa-wallet icon"></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="outgoings money-container">
+        <div class="input-outgoings">
+          <h2>Expenses</h2>
+        <label for="expense 1">
+          <input style="border: 0px;" type="text" placeholder="expense">
+        </label>
+        <input type="text" name="expense 1" id="expense 1" placeholder="price..." />
+        <button class="btn btnDelete"><i class="fas fa-trash-alt"></i></button>
+
+        <button class="btn btnExp">add more +</button>
+        </div>
+
+        <div class="total-expenses">
+          <h2>Total outgoings</h2>
+          <div class="expense-output output">
+            <p id="totalExp">$100</p>
+            <i class="fas fa-calculator"></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="money-container">
+        <div class="remaining-budget">
+          <h2>Remaining Balance:</h2>
+          <div class="final-output">
+            <p>$100</p>
           </div>
         </div>
       </section>

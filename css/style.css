@@ -5,7 +5,9 @@
   font-family: "Poppins", sans-serif;
   flex-direction: column;
 }
-
+section{
+  margin-bottom: 10%;
+}
 input {
   width: 50%;
 }
@@ -15,15 +17,13 @@ input {
   justify-content: center;
 }
 #title {
-  display: flex;
-  justify-content: center;
   margin-top: 5%;
   margin-bottom: 10%;
-  padding-left: 5%;
   text-decoration: underline;
+  text-align: center;
 }
 
-.incomings {
+.money-container {
   display: flex;
   padding: 2%;
   justify-content: space-around;
@@ -47,6 +47,56 @@ input {
   padding: 5%;
 }
 
+.final-output{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5%;
+  font-size: 2em;
+  padding: 5%;
+}
+
+#totalExp{
+  color: red;
+}
+
+#totalInc{
+  color: green;
+}
+
 .icon {
   margin-top: 3%;
+}
+
+.btn{
+  margin-top: 4%;
+  width: fit-content;
+  color: #fff;
+}
+
+.btnInc{
+  background-color: #2e76cf;
+}
+
+.btnExp{
+  background-color: #cf2e2e;
+}
+
+.btnDelete{
+  background-color: gray;
+  transform: scale(0.7);
+}
+
+
+/* outgoings section styles */
+
+.outgoings{
+  display: flex;
+  padding: 2%;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.input-outgoings{
+  display: flex;
 }
