@@ -26,45 +26,92 @@
   </head>
   <body>
     <div class="container">
-      <h1 id="title">Budget app</h1>
       <section class="incomings money-container">
+        <h2>Income</h2>
         <div class="input-income">
-          <h2>Income</h2>
-          <label for="wage">Wage</label> 
-          <input type="text" name="wage" id="wage" placeholder="wage..." />
-          <button class="btn btnDelete"><i class="fas fa-trash-alt"></i></button>
-          <label for="expense 1">
-            <input style="border: 0px;" type="text" placeholder="income...">
-          </label>
-          <input type="text" name="income-1" id="income-1" placeholder="price..." />
-          <button class="btn btnDelete"><i class="fas fa-trash-alt"></i></button>
-
-          <button class="btn btnInc">add more +</button>
+          <label for="title">input name of income below:</label>
+          <input
+            class="inpInc"
+            type="text"
+            name="title"
+            id="incTitle"
+            placeholder="name of income..."
+          />
+          <label for="income-amount">input amount of income below:</label>
+          <input
+            class="inpInc"
+            type="text"
+            name="income-amount"
+            id="incAmount"
+            placeholder="amount..."
+          />
+          <button class="btn btnInc" type="submit" id="incSubmit">
+            Submit
+          </button>
+          <!-- <button class="btn btnDelete">
+            <i class="fas fa-trash-alt"></i>
+          </button> -->
         </div>
 
         <div class="total-income">
           <h2>Total income</h2>
+          <div class="income-list">
+            <!-- <li>
+              <span class="inc-title">wage</span>:
+              <span class="inc-amount">1200</span
+              ><i class="fas fa-trash-alt"></i>
+            </li> -->
+          </div>
           <div class="income-output output">
-            <p id="totalInc">$100</p>
+            <p id="totalInc">$</p>
             <i class="fas fa-wallet icon"></i>
           </div>
         </div>
       </section>
 
       <section class="outgoings money-container">
+        <h2>Expenses</h2>
         <div class="input-outgoings">
-          <h2>Expenses</h2>
-        <label for="expense 1">
-          <input style="border: 0px;" type="text" placeholder="expense">
-        </label>
-        <input type="text" name="expense 1" id="expense 1" placeholder="price..." />
-        <button class="btn btnDelete"><i class="fas fa-trash-alt"></i></button>
-
-        <button class="btn btnExp">add more +</button>
+          <label for="titleExp">input name of expense below:</label>
+          <input
+            class="inpExp"
+            type="text"
+            name="titleExp"
+            id="expTitle"
+            placeholder="name of expense..."
+          />
+          <label for="expense-price">input price of expense below:</label>
+          <input
+            class="inpExp"
+            type="text"
+            name="expense-price"
+            id="expPrice"
+            placeholder="price..."
+          />
+          <button class="btn btnExp" type="submit" id="expSubmit">
+            Submit
+          </button>
+          <!-- <button class="btn btnDelete">
+              <i class="fas fa-trash-alt"></i>
+            </button> -->
         </div>
+        <!-- <label for="expense 1">Input name of expense below: </label>
+          <input
+            type="text"
+            name="expense 1"
+            id="expense 1"
+            placeholder="price..."
+          />
+          <button class="btn btnDelete">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+
+          <button class="btn btnExp">add more +</button>
+        </div> -->
 
         <div class="total-expenses">
           <h2>Total outgoings</h2>
+          <div class="expense-list"></div>
           <div class="expense-output output">
             <p id="totalExp">$100</p>
             <i class="fas fa-calculator"></i>
@@ -72,7 +119,7 @@
         </div>
       </section>
 
-      <section class="money-container">
+      <section class="balance money-container">
         <div class="remaining-budget">
           <h2>Remaining Balance:</h2>
           <div class="final-output">

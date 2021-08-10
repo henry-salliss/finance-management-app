@@ -5,11 +5,31 @@
   font-family: "Poppins", sans-serif;
   flex-direction: column;
 }
-section{
+section {
   margin-bottom: 10%;
 }
 input {
-  width: 50%;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
+
+.inpInc {
+  border: 1px solid green;
+}
+
+.inpExp {
+  border: 1px solid red;
+}
+#incSubmit {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
+
+h2 {
+  text-align: center;
 }
 
 .container {
@@ -27,11 +47,12 @@ input {
   display: flex;
   padding: 2%;
   justify-content: space-around;
-  flex-direction: row;
+  border: 2px solid green;
 }
 
 .input-income {
   display: flex;
+  text-align: center;
 }
 
 .total-income {
@@ -42,12 +63,11 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 25%;
   font-size: 2em;
   padding: 5%;
 }
 
-.final-output{
+.final-output {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -56,11 +76,11 @@ input {
   padding: 5%;
 }
 
-#totalExp{
+#totalExp {
   color: red;
 }
 
-#totalInc{
+#totalInc {
   color: green;
 }
 
@@ -68,35 +88,39 @@ input {
   margin-top: 3%;
 }
 
-.btn{
+.btn {
   margin-top: 4%;
   width: fit-content;
   color: #fff;
 }
 
-.btnInc{
+.btnInc {
   background-color: #2e76cf;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.btnExp{
+.btnExp {
   background-color: #cf2e2e;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.btnDelete{
+.btnDelete {
   background-color: gray;
   transform: scale(0.7);
 }
 
-
 /* outgoings section styles */
 
-.outgoings{
+.outgoings {
   display: flex;
   padding: 2%;
   justify-content: space-around;
-  flex-direction: row;
+  border: solid 2px red;
 }
 
-.input-outgoings{
+.input-outgoings {
   display: flex;
+  text-align: center;
 }
