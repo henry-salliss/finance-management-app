@@ -3,6 +3,8 @@
 const containers = Array.from(document.querySelectorAll(".money-container"));
 const deleteBtn = document.querySelectorAll(".btnDel");
 const outputs = document.querySelectorAll(".output");
+// const incomings = document.querySelector('.incomings');
+// const outgoings = document.querySelector('.outgoings');
 
 // get income elements
 const incomeTitle = document.querySelector("#incTitle");
@@ -87,7 +89,7 @@ const resolveIncData = function () {
 const calcIncTotal = function () {
   const total = incAmounts.reduce((acc, price) => {
     return acc + price;
-  });
+  }, 0);
   console.log(total, currency);
   totalIncome.textContent = currency + total;
 };
@@ -150,24 +152,24 @@ expSubmitBtn.addEventListener("keydown", function (e) {
 // Make delete button work on li elements
 containers.forEach((container) => {
   container.addEventListener("click", function (e) {
+    // if btn doesnt exist return
     if (!e.target.classList.contains("btnDel")) return;
 
-    console.log(incTitles);
-    console.log(incAmounts);
-
+    // get elements
     const elements = Array.from(e.target.parentElement.children);
     const title = elements[0].textContent;
     const value = +elements[1].textContent.slice(1);
 
+    // for incoming container
     if (container.classList.contains("incomings")) {
-      // Remove title and value from arrays
+      // Remove title from array
       incTitles.find((t) => {
         if (t === title) {
           const index = incTitles.indexOf(t);
           incTitles.splice(index, 1);
         }
       });
-
+      // remove value from array
       incAmounts.find((a) => {
         if (a === value) {
           const index = incAmounts.indexOf(a);
@@ -175,10 +177,37 @@ containers.forEach((container) => {
         }
       });
 
-      console.log(incTitles);
-      console.log(incAmounts);
-
+      // recalculate totals
+      calcIncTotal();
       calcBalance();
+
+      // remove li element
+      e.target.parentElement.remove();
+    }
+
+    // for outgoings container
+    if (container.classList.contains("outgoings")) {
+      // Remove title from array
+      expTitles.find((t) => {
+        if (t === title) {
+          const index = expTitles.indexOf(t);
+          expTitles.splice(index, 1);
+        }
+      });
+      // remove value from array
+      expPrices.find((a) => {
+        if (a === value) {
+          const index = expPrices.indexOf(a);
+          expPrices.splice(index, 1);
+        }
+      });
+
+      // recalculate totals
+      calcExpTotal();
+      calcBalance();
+
+      // remove li element
+      e.target.parentElement.remove();
     }
   });
 });
