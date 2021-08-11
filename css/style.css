@@ -36,6 +36,16 @@ h2 {
   display: flex;
   justify-content: center;
 }
+
+.currency-list {
+  margin: auto;
+  text-align: center;
+  transition: 1000ms;
+}
+
+.hidden {
+  opacity: 0;
+}
 #title {
   margin-top: 5%;
   margin-bottom: 10%;
@@ -46,8 +56,11 @@ h2 {
 .money-container {
   display: flex;
   padding: 2%;
+  margin: 1%;
   justify-content: space-around;
   border: 2px solid green;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 30%);
+  transition: 1000ms;
 }
 
 .input-income {
@@ -109,6 +122,10 @@ h2 {
 .btnDelete {
   background-color: gray;
   transform: scale(0.7);
+}
+
+.btnConfirm {
+  background-color: rgb(72, 134, 216);
 }
 
 /* outgoings section styles */

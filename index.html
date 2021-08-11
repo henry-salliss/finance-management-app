@@ -26,6 +26,15 @@
   </head>
   <body>
     <div class="container">
+      <div class="currency-list">
+        <h2>Select your currency</h2>
+        <select name="currency " id="currencyDropDown">
+          <option value="£">£</option>
+          <option value="€">€</option>
+          <option value="$">$</option>
+        </select>
+        <button class="btnConfirm btn">confirm</button>
+      </div>
       <section class="incomings money-container">
         <h2>Income</h2>
         <div class="input-income">
@@ -63,7 +72,7 @@
             </li> -->
           </div>
           <div class="income-output output">
-            <p id="totalInc">$</p>
+            <p id="totalInc"><span id="incTotal"></span></p>
             <i class="fas fa-wallet icon"></i>
           </div>
         </div>
@@ -113,7 +122,7 @@
           <h2>Total outgoings</h2>
           <div class="expense-list"></div>
           <div class="expense-output output">
-            <p id="totalExp">$100</p>
+            <p id="totalExp"><span id="expTotal"></span></p>
             <i class="fas fa-calculator"></i>
           </div>
         </div>
@@ -123,7 +132,7 @@
         <div class="remaining-budget">
           <h2>Remaining Balance:</h2>
           <div class="final-output">
-            <p>$100</p>
+            <p id="balance"></p>
           </div>
         </div>
       </section>
