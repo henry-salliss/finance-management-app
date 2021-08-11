@@ -115,7 +115,7 @@ const outgoingHTML = function () {
   const html = `
     <li class ='expense-list-item'>
         <span class="inc-title">${expenseTitle.value}</span>:
-        <span class="inc-amount">${expensePrice.value}</span
+        <span class="inc-amount">${currency}${expensePrice.value}</span
         ><i class="fas fa-trash-alt btnDel"></i>
     </li>
     `;
@@ -136,7 +136,7 @@ const resolveExpData = function () {
 const calcExpTotal = function () {
   const total = expPrices.reduce((acc, price) => {
     return acc + price;
-  });
+  }, 0);
   totalOutgoings.textContent = currency + total;
 };
 
@@ -159,6 +159,7 @@ containers.forEach((container) => {
     const elements = Array.from(e.target.parentElement.children);
     const title = elements[0].textContent;
     const value = +elements[1].textContent.slice(1);
+    console.log(elements);
 
     // for incoming container
     if (container.classList.contains("incomings")) {
@@ -171,6 +172,7 @@ containers.forEach((container) => {
       });
       // remove value from array
       incAmounts.find((a) => {
+        console.log(value);
         if (a === value) {
           const index = incAmounts.indexOf(a);
           incAmounts.splice(index, 1);
@@ -187,6 +189,8 @@ containers.forEach((container) => {
 
     // for outgoings container
     if (container.classList.contains("outgoings")) {
+      console.log(expTitles);
+      console.log(expPrices);
       // Remove title from array
       expTitles.find((t) => {
         if (t === title) {
@@ -196,12 +200,15 @@ containers.forEach((container) => {
       });
       // remove value from array
       expPrices.find((a) => {
+        console.log(value);
         if (a === value) {
           const index = expPrices.indexOf(a);
+          console.log(index);
           expPrices.splice(index, 1);
         }
       });
-
+      console.log(expTitles);
+      console.log(expPrices);
       // recalculate totals
       calcExpTotal();
       calcBalance();
