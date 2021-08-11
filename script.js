@@ -1,5 +1,9 @@
 "use strict";
 
+const containers = Array.from(document.querySelectorAll(".money-container"));
+const deleteBtn = document.querySelectorAll(".btnDel");
+const outputs = document.querySelectorAll(".output");
+
 // get income elements
 const incomeTitle = document.querySelector("#incTitle");
 const incomeAmount = document.querySelector("#incAmount");
@@ -37,7 +41,9 @@ confirmBtn.addEventListener("click", function (e) {
 
   // hide currency choice
   currencyContainer.classList.add("hidden");
-  setTimeout(() => (currencyContainer.style.height = 0), 1000);
+
+  // show money containers
+  containers.forEach((cont) => (cont.style.opacity = 1));
   return currency;
 });
 
@@ -64,7 +70,7 @@ const incomeHTML = function () {
   const html = `<li class ='income-list-item'>
                       <span class="inc-title">${incomeTitle.value}</span>:
                       <span class="inc-amount">${currency}${incomeAmount.value}</span
-                      ><i class="fas fa-trash-alt"></i>
+                      ><i class="fas fa-trash-alt btnDel"></i>
                   </li>`;
   incomeList.insertAdjacentHTML("beforeend", html);
 };
@@ -84,13 +90,12 @@ const calcIncTotal = function () {
   });
   console.log(total, currency);
   totalIncome.textContent = currency + total;
-  //   totalIncomeValue.textContent = total;
 };
 
 // Listen for click event and enter key
 submitBtn.addEventListener("click", calcIncome);
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") calcIncome() && calcExpenses();
+  if (e.key === "Enter") calcIncome() && calcExpenses() && calcBalance();
 });
 
 const calcExpenses = function () {
@@ -109,7 +114,7 @@ const outgoingHTML = function () {
     <li class ='expense-list-item'>
         <span class="inc-title">${expenseTitle.value}</span>:
         <span class="inc-amount">${expensePrice.value}</span
-        ><i class="fas fa-trash-alt"></i>
+        ><i class="fas fa-trash-alt btnDel"></i>
     </li>
     `;
 
@@ -140,4 +145,40 @@ expSubmitBtn.addEventListener("click", function (e) {
 expSubmitBtn.addEventListener("keydown", function (e) {
   e.preventDefault();
   if (e.key === "Enter") calcExpenses();
+});
+
+// Make delete button work on li elements
+containers.forEach((container) => {
+  container.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("btnDel")) return;
+
+    console.log(incTitles);
+    console.log(incAmounts);
+
+    const elements = Array.from(e.target.parentElement.children);
+    const title = elements[0].textContent;
+    const value = +elements[1].textContent.slice(1);
+
+    if (container.classList.contains("incomings")) {
+      // Remove title and value from arrays
+      incTitles.find((t) => {
+        if (t === title) {
+          const index = incTitles.indexOf(t);
+          incTitles.splice(index, 1);
+        }
+      });
+
+      incAmounts.find((a) => {
+        if (a === value) {
+          const index = incAmounts.indexOf(a);
+          incAmounts.splice(index, 1);
+        }
+      });
+
+      console.log(incTitles);
+      console.log(incAmounts);
+
+      calcBalance();
+    }
+  });
 });
