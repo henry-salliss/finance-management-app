@@ -73,6 +73,7 @@ const incomeHTML = function () {
                       <span class="inc-title">${incomeTitle.value}</span>:
                       <span class="inc-amount">${currency}${incomeAmount.value}</span
                       ><i class="fas fa-trash-alt btnDel"></i>
+                      <i class="fas fa-edit btnEdit"></i>
                   </li>`;
   incomeList.insertAdjacentHTML("beforeend", html);
 };
@@ -117,6 +118,7 @@ const outgoingHTML = function () {
         <span class="inc-title">${expenseTitle.value}</span>:
         <span class="inc-amount">${currency}${expensePrice.value}</span
         ><i class="fas fa-trash-alt btnDel"></i>
+        <i class="fas fa-edit btnEdit"></i>
     </li>
     `;
 
@@ -216,5 +218,47 @@ containers.forEach((container) => {
       // remove li element
       e.target.parentElement.remove();
     }
+  });
+});
+
+// make edit button work
+
+containers.forEach((container) => {
+  container.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("fa-edit")) return;
+    // create elements
+    const edit = e.target;
+    const li = edit.parentElement;
+    const oldTitle = li.firstElementChild;
+    const input = document.createElement("input");
+
+    // remove old title and add input
+    input.classList.add("inc-title");
+    input.type = "text";
+    input.value = oldTitle.textContent;
+    li.insertBefore(input, oldTitle);
+    oldTitle.remove();
+
+    // change to tick btn
+    edit.classList.remove("fa-edit");
+    edit.classList.add("fa-check-circle");
+
+    container.addEventListener("click", function (e) {
+      if (!e.target.classList.contains("fa-check-circle")) return;
+      // save edit
+      const newTitle = document.createElement("span");
+      newTitle.classList.add("inc-title");
+      newTitle.type = "text";
+      newTitle.textContent = input.value;
+      li.prepend(newTitle);
+
+      // remove the input
+      const children = Array.from(li.children);
+      children.find((child) => {
+        if (child.localName === "input") child.remove();
+      });
+
+      edit.remove();
+    });
   });
 });

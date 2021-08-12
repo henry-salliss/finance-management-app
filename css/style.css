@@ -22,6 +22,12 @@ input {
 .inpExp {
   border: 1px solid red;
 }
+
+.inc-title {
+  width: 25%;
+  margin-left: 1%;
+}
+
 #incSubmit {
   margin-left: auto;
   margin-right: auto;
