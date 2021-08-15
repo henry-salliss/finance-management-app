@@ -1,10 +1,12 @@
 "use strict";
-
+// get elements
 const containers = Array.from(document.querySelectorAll(".money-container"));
 const deleteBtn = document.querySelectorAll(".btnDel");
 const outputs = document.querySelectorAll(".output");
-// const incomings = document.querySelector('.incomings');
-// const outgoings = document.querySelector('.outgoings');
+const tickHTML = `<i class="fas fa-check-circle tick"></i>`;
+const popup = document.querySelector(".popup");
+const popupYes = document.querySelector("#popupYes");
+const popupNo = document.querySelector("#popupNo");
 
 // get income elements
 const incomeTitle = document.querySelector("#incTitle");
@@ -74,6 +76,7 @@ const incomeHTML = function () {
                       <span class="inc-amount">${currency}${incomeAmount.value}</span
                       ><i class="fas fa-trash-alt btnDel"></i>
                       <i class="fas fa-edit btnEdit"></i>
+                      
                   </li>`;
   incomeList.insertAdjacentHTML("beforeend", html);
 };
@@ -91,7 +94,6 @@ const calcIncTotal = function () {
   const total = incAmounts.reduce((acc, price) => {
     return acc + price;
   }, 0);
-  console.log(total, currency);
   totalIncome.textContent = currency + total;
 };
 
@@ -113,6 +115,7 @@ const calcExpenses = function () {
 };
 
 const outgoingHTML = function () {
+  if (expenseTitle.value === "" || expensePrice.value === "") return;
   const html = `
     <li class ='expense-list-item'>
         <span class="inc-title">${expenseTitle.value}</span>:
@@ -161,62 +164,87 @@ containers.forEach((container) => {
     const elements = Array.from(e.target.parentElement.children);
     const title = elements[0].textContent;
     const value = +elements[1].textContent.slice(1);
-    console.log(elements);
-
+    const li = e.target.parentElement;
     // for incoming container
     if (container.classList.contains("incomings")) {
-      // Remove title from array
-      incTitles.find((t) => {
-        if (t === title) {
-          const index = incTitles.indexOf(t);
-          incTitles.splice(index, 1);
+      // show popup
+      containers.forEach((cont) => cont.classList.add("overlay"));
+      popup.style.opacity = 1;
+      popup.addEventListener("click", function (e) {
+        e.preventDefault();
+        // handle yes and no btns
+        if (e.target === popupNo) {
+          popup.style.opacity = 0;
+          containers.forEach((cont) => cont.classList.remove("overlay"));
+        } else {
+          // Remove title from array
+          incTitles.find((t) => {
+            if (t === title) {
+              const index = incTitles.indexOf(t);
+              incTitles.splice(index, 1);
+            }
+          });
+          // remove value from array
+          incAmounts.find((a) => {
+            console.log(value);
+            if (a === value) {
+              const index = incAmounts.indexOf(a);
+              incAmounts.splice(index, 1);
+            }
+
+            // recalculate totals
+            calcIncTotal();
+            calcBalance();
+
+            // remove li element
+            li.remove();
+
+            popup.style.opacity = 0;
+            containers.forEach((cont) => cont.classList.remove("overlay"));
+          });
         }
       });
-      // remove value from array
-      incAmounts.find((a) => {
-        console.log(value);
-        if (a === value) {
-          const index = incAmounts.indexOf(a);
-          incAmounts.splice(index, 1);
-        }
-      });
-
-      // recalculate totals
-      calcIncTotal();
-      calcBalance();
-
-      // remove li element
-      e.target.parentElement.remove();
     }
 
     // for outgoings container
     if (container.classList.contains("outgoings")) {
-      console.log(expTitles);
-      console.log(expPrices);
-      // Remove title from array
-      expTitles.find((t) => {
-        if (t === title) {
-          const index = expTitles.indexOf(t);
-          expTitles.splice(index, 1);
-        }
-      });
-      // remove value from array
-      expPrices.find((a) => {
-        console.log(value);
-        if (a === value) {
-          const index = expPrices.indexOf(a);
-          console.log(index);
-          expPrices.splice(index, 1);
-        }
-      });
-      console.log(expTitles);
-      console.log(expPrices);
-      // recalculate totals
-      calcExpTotal();
-      calcBalance();
+      // show popup
+      containers.forEach((cont) => cont.classList.add("overlay"));
+      popup.style.opacity = 1;
+      popup.addEventListener("click", function (e) {
+        e.preventDefault();
+        // handle yes and no btns
+        if (e.target === popupNo) {
+          popup.style.opacity = 0;
+          containers.forEach((cont) => cont.classList.remove("overlay"));
+        } else {
+          // Remove title from array
+          expTitles.find((t) => {
+            if (t === title) {
+              const index = expTitles.indexOf(t);
+              expTitles.splice(index, 1);
+            }
+          });
+          // remove value from array
+          expPrices.find((a) => {
+            console.log(value);
+            if (a === value) {
+              const index = expPrices.indexOf(a);
+              expPrices.splice(index, 1);
+            }
 
-      // remove li element
-      e.target.parentElement.remove();
+            // recalculate totals
+            calcExpTotal();
+            calcBalance();
+
+            // remove li element
+            li.remove();
+
+            popup.style.opacity = 0;
+            containers.forEach((cont) => cont.classList.remove("overlay"));
+          });
+        }
+      });
     }
   });
 });
@@ -231,7 +259,6 @@ containers.forEach((container) => {
     const li = edit.parentElement;
     const oldTitle = li.firstElementChild;
     const input = document.createElement("input");
-
     // remove old title and add input
     input.classList.add("inc-title");
     input.type = "text";
@@ -240,25 +267,22 @@ containers.forEach((container) => {
     oldTitle.remove();
 
     // change to tick btn
-    edit.classList.remove("fa-edit");
-    edit.classList.add("fa-check-circle");
-
-    container.addEventListener("click", function (e) {
-      if (!e.target.classList.contains("fa-check-circle")) return;
+    edit.remove();
+    li.insertAdjacentHTML("beforeend", tickHTML);
+    li.addEventListener("click", function (e) {
+      if (!e.target.classList.contains("tick")) return;
       // save edit
       const newTitle = document.createElement("span");
-      newTitle.classList.add("inc-title");
+      newTitle.classList.add("inc-title-new");
       newTitle.type = "text";
       newTitle.textContent = input.value;
-      li.prepend(newTitle);
 
       // remove the input
-      const children = Array.from(li.children);
-      children.find((child) => {
-        if (child.localName === "input") child.remove();
-      });
+      input.remove();
+      li.prepend(newTitle);
 
-      edit.remove();
+      // remove tick btn
+      e.target.remove();
     });
   });
 });
