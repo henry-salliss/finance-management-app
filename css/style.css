@@ -1,3 +1,5 @@
+/* **************** base styles *********/
+
 * {
   padding: 0;
   margin: 0;
@@ -19,48 +21,18 @@ button {
   cursor: pointer;
 }
 
-.inpInc {
-  border: 1px solid green;
-}
-
-.inpExp {
-  border: 1px solid red;
-}
-
-.inc-title {
-  width: 25%;
-  margin-left: 1%;
-}
-
-#incSubmit {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2%;
+li {
+  list-style: none;
 }
 
 h2 {
   text-align: center;
 }
 
+/* **************** containers styles *********/
 .container {
   display: flex;
   justify-content: center;
-}
-
-.currency-list {
-  margin: auto;
-  text-align: center;
-  transition: 1000ms;
-}
-
-.hidden {
-  opacity: 0;
-}
-#title {
-  margin-top: 5%;
-  margin-bottom: 10%;
-  text-decoration: underline;
-  text-align: center;
 }
 
 .money-container {
@@ -74,6 +46,47 @@ h2 {
   opacity: 0;
 }
 
+.output {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 2em;
+  padding: 5%;
+}
+
+/* **************** currency styles *********/
+
+.currency-list {
+  margin: auto;
+  text-align: center;
+  transition: 1000ms;
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+}
+
+/* **************** income styles *********/
+.income-list-item {
+  text-align: center;
+}
+
+.inpInc {
+  border: 1px solid green;
+}
+
+.inc-title {
+  width: 25%;
+  margin-left: 1%;
+}
+
+#incSubmit {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
+
 .input-income {
   display: flex;
   text-align: center;
@@ -83,30 +96,11 @@ h2 {
   display: flex;
 }
 
-.output {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  font-size: 2em;
-  padding: 5%;
-}
-
-.final-output {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 5%;
-  font-size: 2em;
-  padding: 5%;
-}
-
-#totalExp {
-  color: red;
-}
-
 #totalInc {
   color: green;
 }
+
+/* **************** btn/icon styles *********/
 
 .icon {
   margin-top: 3%;
@@ -139,7 +133,7 @@ h2 {
   background-color: rgb(72, 134, 216);
 }
 
-/* outgoings section styles */
+/* **************** outgoings styles *********/
 
 .outgoings {
   display: flex;
@@ -151,6 +145,29 @@ h2 {
 .input-outgoings {
   display: flex;
   text-align: center;
+}
+
+.inpExp {
+  border: 1px solid red;
+}
+
+.expense-list-item {
+  text-align: center;
+}
+
+#totalExp {
+  color: red;
+}
+
+/* **************** balance styles *********/
+
+.final-output {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5%;
+  font-size: 2em;
+  padding: 5%;
 }
 
 /* **************** popup styles *********/
@@ -165,7 +182,6 @@ h2 {
   position: absolute;
   top: 40%;
   z-index: 99;
-  opacity: 0;
 }
 
 .popup button {
@@ -177,4 +193,111 @@ h2 {
 
 .overlay {
   filter: blur(6px);
+}
+
+/***********************************************************************/
+/* IPAD STYLES */
+
+@media only screen and (min-width: 768px) {
+  /* **************** containers styles *********/
+
+  .money-container {
+    margin: 10%;
+  }
+
+  .output {
+    font-size: 2em;
+    padding: 5%;
+  }
+
+  /* **************** income styles *********/
+  .income-list-item {
+    padding-top: 1%;
+  }
+
+  /* **************** popup styles *********/
+  .popup {
+    left: 30%;
+    top: 55%;
+  }
+}
+
+/***********************************************************************/
+/* Desktop STYLES */
+
+@media only screen and (min-width: 1200px) {
+  /* **************** containers styles *********/
+
+  .money-container {
+    padding: 2%;
+    margin-top: 3%;
+    margin-bottom: 1%;
+    margin-left: 30%;
+    margin-right: 30%;
+    font-size: larger;
+  }
+
+  /* **************** currency styles *********/
+
+  .currency-list {
+    top: 40%;
+    left: 42%;
+  }
+
+  /* **************** income styles *********/
+
+  .inc-title {
+    width: 25%;
+    margin-bottom: 3%;
+  }
+
+  #incSubmit {
+    margin-top: 4%;
+    padding: 1%;
+  }
+
+  .input-income {
+    padding-bottom: 5%;
+  }
+
+  .inpInc {
+    padding: 1%;
+  }
+
+  /* **************** btn/icon styles *********/
+
+  .icon {
+    font-size: 1.5em;
+  }
+
+  .btnExp {
+    padding: 1%;
+  }
+
+  .btnDel {
+    cursor: pointer;
+    padding-left: 1%;
+  }
+
+  /* **************** popup styles *********/
+  .popup {
+    left: 39%;
+    padding: 1%;
+    top: 100%;
+  }
+
+  .popupInc {
+    top: 39%;
+  }
+
+  .popupExp {
+    top: 167%;
+  }
+
+  .popup button {
+    color: white;
+    margin: auto;
+    margin-top: 2%;
+    width: fit-content;
+  }
 }

@@ -169,12 +169,13 @@ containers.forEach((container) => {
     if (container.classList.contains("incomings")) {
       // show popup
       containers.forEach((cont) => cont.classList.add("overlay"));
-      popup.style.opacity = 1;
+      popup.classList.remove("hidden");
+      popup.classList.add("popupInc");
       popup.addEventListener("click", function (e) {
         e.preventDefault();
         // handle yes and no btns
         if (e.target === popupNo) {
-          popup.style.opacity = 0;
+          popup.classList.add("hidden");
           containers.forEach((cont) => cont.classList.remove("overlay"));
         } else {
           // Remove title from array
@@ -199,7 +200,8 @@ containers.forEach((container) => {
             // remove li element
             li.remove();
 
-            popup.style.opacity = 0;
+            popup.classList.add("hidden");
+
             containers.forEach((cont) => cont.classList.remove("overlay"));
           });
         }
@@ -210,12 +212,13 @@ containers.forEach((container) => {
     if (container.classList.contains("outgoings")) {
       // show popup
       containers.forEach((cont) => cont.classList.add("overlay"));
-      popup.style.opacity = 1;
+      popup.classList.remove("hidden");
+      popup.classList.add("popupExp");
       popup.addEventListener("click", function (e) {
         e.preventDefault();
         // handle yes and no btns
         if (e.target === popupNo) {
-          popup.style.opacity = 0;
+          popup.classList.add("hidden");
           containers.forEach((cont) => cont.classList.remove("overlay"));
         } else {
           // Remove title from array
@@ -239,8 +242,7 @@ containers.forEach((container) => {
 
             // remove li element
             li.remove();
-
-            popup.style.opacity = 0;
+            popup.classList.add("hidden");
             containers.forEach((cont) => cont.classList.remove("overlay"));
           });
         }
