@@ -85,6 +85,7 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
+  z-index: 99;
 }
 
 .input-income {
@@ -169,6 +170,10 @@ h2 {
   font-size: 2em;
   padding: 5%;
 }
+
+/* #balance{
+  color: red;
+} */
 
 /* **************** popup styles *********/
 .popup {
@@ -291,7 +296,7 @@ h2 {
   }
 
   .popupExp {
-    top: 167%;
+    top: 100%;
   }
 
   .popup button {

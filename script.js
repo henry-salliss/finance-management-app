@@ -53,9 +53,13 @@ confirmBtn.addEventListener("click", function (e) {
 
 const calcBalance = function () {
   const total =
-    totalIncome.textContent.slice(1) - totalOutgoings.textContent.slice(1);
+    totalIncome.textContent.slice(1) - totalOutgoings.textContent.slice(2);
 
   balance.textContent = currency + total;
+
+  if (balance.textContent.includes("-")) balance.style.color = "red";
+
+  if (!balance.textContent.includes("-")) balance.style.color = "green";
 };
 
 const calcIncome = function () {
@@ -142,7 +146,7 @@ const calcExpTotal = function () {
   const total = expPrices.reduce((acc, price) => {
     return acc + price;
   }, 0);
-  totalOutgoings.textContent = currency + total;
+  totalOutgoings.textContent = "-" + currency + total;
 };
 
 expSubmitBtn.addEventListener("click", function (e) {
@@ -177,6 +181,7 @@ containers.forEach((container) => {
         if (e.target === popupNo) {
           popup.classList.add("hidden");
           containers.forEach((cont) => cont.classList.remove("overlay"));
+          popup.classList.remove("popupInc");
         } else {
           // Remove title from array
           incTitles.find((t) => {
@@ -201,6 +206,7 @@ containers.forEach((container) => {
             li.remove();
 
             popup.classList.add("hidden");
+            popup.classList.remove("popupInc");
 
             containers.forEach((cont) => cont.classList.remove("overlay"));
           });
@@ -220,6 +226,7 @@ containers.forEach((container) => {
         if (e.target === popupNo) {
           popup.classList.add("hidden");
           containers.forEach((cont) => cont.classList.remove("overlay"));
+          popup.classList.remove("popupExp");
         } else {
           // Remove title from array
           expTitles.find((t) => {
@@ -243,6 +250,7 @@ containers.forEach((container) => {
             // remove li element
             li.remove();
             popup.classList.add("hidden");
+            popup.classList.remove("popupExp");
             containers.forEach((cont) => cont.classList.remove("overlay"));
           });
         }
