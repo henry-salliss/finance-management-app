@@ -7,6 +7,8 @@ const tickHTML = `<i class="fas fa-check-circle tick"></i>`;
 const popup = document.querySelector(".popup");
 const popupYes = document.querySelector("#popupYes");
 const popupNo = document.querySelector("#popupNo");
+const incQuantity = document.querySelector("#incQuantity");
+const expQuantity = document.querySelector("#expQuantity");
 
 // get income elements
 const incomeTitle = document.querySelector("#incTitle");
@@ -76,22 +78,25 @@ const calcIncome = function () {
 const incomeHTML = function () {
   if (incomeTitle.value === "" || incomeAmount.value === "") return;
   const html = `<li class ='income-list-item'>
-                      <span class="inc-title">${incomeTitle.value}</span>:
-                      <span class="inc-amount">${currency}${incomeAmount.value}</span
-                      ><i class="fas fa-trash-alt btnDel"></i>
-                      <i class="fas fa-edit btnEdit"></i>
-                      
-                  </li>`;
+                    <span class="inc-title">${incomeTitle.value}</span>:
+                    <span class="inc-amount">${currency}${
+    incomeAmount.value * incQuantity.value
+  }</span
+                    ><i class="fas fa-trash-alt btnDel"></i>
+                    <i class="fas fa-edit btnEdit"></i>
+                    
+                </li>`;
   incomeList.insertAdjacentHTML("beforeend", html);
 };
 
 const resolveIncData = function () {
   // push values to arrays
   incTitles.push(incomeTitle.value);
-  incAmounts.push(+incomeAmount.value);
+  incAmounts.push(+incomeAmount.value * incQuantity.value);
   // Clear input fields
   incomeTitle.value = "";
   incomeAmount.value = "";
+  incQuantity.value = 1;
 };
 
 const calcIncTotal = function () {
@@ -121,13 +126,15 @@ const calcExpenses = function () {
 const outgoingHTML = function () {
   if (expenseTitle.value === "" || expensePrice.value === "") return;
   const html = `
-    <li class ='expense-list-item'>
-        <span class="inc-title">${expenseTitle.value}</span>:
-        <span class="inc-amount">${currency}${expensePrice.value}</span
-        ><i class="fas fa-trash-alt btnDel"></i>
-        <i class="fas fa-edit btnEdit"></i>
-    </li>
-    `;
+  <li class ='expense-list-item'>
+      <span class="inc-title">${expenseTitle.value}</span>:
+      <span class="inc-amount">${currency}${
+    expensePrice.value * expQuantity.value
+  }</span
+      ><i class="fas fa-trash-alt btnDel"></i>
+      <i class="fas fa-edit btnEdit"></i>
+  </li>
+  `;
 
   expenseList.insertAdjacentHTML("beforeend", html);
 };
@@ -135,11 +142,12 @@ const outgoingHTML = function () {
 const resolveExpData = function () {
   // Store data in arrays
   expTitles.push(expenseTitle.value);
-  expPrices.push(+expensePrice.value);
+  expPrices.push(+expensePrice.value * expQuantity.value);
 
   // Clear inputs
   expenseTitle.value = "";
   expensePrice.value = "";
+  expQuantity.value = 1;
 };
 
 const calcExpTotal = function () {

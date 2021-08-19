@@ -54,6 +54,11 @@ h2 {
   padding: 5%;
 }
 
+.quantity {
+  width: 35px;
+  margin: auto;
+  margin-top: 1%;
+}
 /* **************** currency styles *********/
 
 .currency-list {

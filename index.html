@@ -24,6 +24,7 @@
     <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet" />
     <script defer src="script.js"></script>
   </head>
+
   <body>
     <div class="popup hidden">
       <h4>Are you sure want to delete this entry?</h4>
@@ -59,6 +60,19 @@
             id="incAmount"
             placeholder="amount..."
           />
+          <label for="quantity">Quantity</label>
+          <select name="quantity" class="quantity" id="incQuantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
           <button class="btn btnInc" type="submit" id="incSubmit">
             Submit
           </button>
@@ -96,6 +110,20 @@
             id="expPrice"
             placeholder="price..."
           />
+
+          <label for="quantity">Quantity</label>
+          <select name="quantity" class="quantity" id="expQuantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
           <button class="btn btnExp" type="submit" id="expSubmit">
             Submit
           </button>
@@ -113,7 +141,6 @@
           <button class="btn btnDelete">
             <i class="fas fa-trash-alt"></i>
           </button>
-
           <button class="btn btnExp">add more +</button>
         </div> -->
 
